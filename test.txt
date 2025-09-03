@@ -1,0 +1,18 @@
+68b73a74983541cc25ab22b5
+
+transcript: 'Interviewer: Hi Corey, thanks for joining us today. Could you start by telling me a little about your typical grocery shopping routine?\n' +
+    'Participant: Sure. I usually go to the local supermarket on Sunday mornings. I make a list on my phone, then walk through the aisles and scan items with the store’s app. I often plan my groceries around my gym schedule, making sure I get protein-rich foods for my weight training, and sometimes order online for delivery if I’m busy.\n' +
+    'Interviewer: That’s helpful. Do you currently use any apps or online services to help with grocery shopping? If yes, which ones?\n' +
+    'Participant: I use the store’s app for scanning and digital receipts, plus a discount app that shows coupons for the items I buy. I also have a budgeting app that tracks my grocery spend. I make sure to get items that support my gym and weight training routine.\n' +
+    'Interviewer: What factors influence where and how you shop for groceries?\n' +
+    'Participant: Price is a big factor, but I also care about freshness, product variety, and the convenience of the checkout process. The store’s loyalty program also pulls me in. I prioritize foods that complement my gym workouts and weight training.\n' +
+    'Interviewer: What motivates you to try new shopping apps or technologies?\n' +
+    'Participant: If it promises real savings or saves me time, I’m curious. Also, peer recommendations matter—if my friends say it’s useful, I’ll give it a shot. I use apps to track my nutrition and ensure I have what I need for gym sessions.\n' +
+    'Interviewer: What frustrates you most about grocery shopping today?\n' +
+    'Participant: Long lines at checkout, missing coupons because I forgot them, and sometimes the app shows the wrong price when I scan an item. I also try to plan my trips around my weight training schedule.\n' +
+    'Interviewer: How often do you use your phone during grocery shopping—for price comparison, list-making, scanning, etc.?\n' +
+    'Participant: I check my phone every few minutes—at least 10-15 times during a trip. I use it to scan, compare prices, and sometimes to order a missing item for delivery. I also check for foods that help with my gym and weight training goals.\n' +
+    'Interviewer: Have you experienced challenges using these apps, like reliability or delivery delays?\n' +
+    'Participant: Yeah, the delivery app sometimes says my order is ready but it’s still in the kitchen. The scanning feature glitches when the barcodes are worn. I make sure I get all the groceries I need to support my workouts.\n' +
+    'Interviewer: Finally, if you could design your own grocery app, what would be the top 3 features you’d want?\n' +
+    'Participant: I’d want instant price comparison, a smart reorder that learns my habits, and a real-time inventory check so I know if an item is in stock before I head out. I use these features to plan my meals around gym and weight training days.',

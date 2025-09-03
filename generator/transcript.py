@@ -16,6 +16,7 @@ import json
 import time
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Tuple
+import random
 
 import requests
 from pymongo import MongoClient, ASCENDING
@@ -141,7 +142,7 @@ def call_ollama(prompt: str) -> Tuple[str, int]:
         "stream": False,
         "options": {"temperature": TEMPERATURE},
     }
-    resp = requests.post(f"{OLLAMA_URL}/api/generate", json=payload, timeout=600)
+    resp = requests.post(f"{OLLAMA_URL}/api/generate", json=payload, timeout=1800)
     resp.raise_for_status()
     text = resp.json().get("response", "")
     data = json.loads(text)  # model instructed to return JSON only
@@ -177,16 +178,18 @@ def main():
     print(f"Found {len(users)} users and {len(projects)} projects. Generating transcripts for all pairs...")
 
     total = 0
-    for u in users[28:]:
-        for p in projects:
-            prompt = build_prompt(u, p)
-            transcript, minutes = call_ollama(prompt)
-            save_history(u["_id"], p["_id"], transcript, minutes)
+    for u in users:
+        # pick a single random project
+        p = random.choice(projects)
 
-            total += 1
-            # light pacing so we don't crush a local CPU/GPU
-            time.sleep(0.05)
-            print(f"Saved transcript: user={u['_id']} project={p['_id']} ({minutes} min)")
+        prompt = build_prompt(u, p)
+        transcript, minutes = call_ollama(prompt)
+        save_history(u["_id"], p["_id"], transcript, minutes)
+
+        total += 1
+        # light pacing so we don't crush a local CPU/GPU
+        time.sleep(0.05)
+        print(f"Saved transcript: user={u['_id']} project={p['_id']} ({minutes} min)")
 
     print(f"Done. Generated {total} interview transcripts.")
 
