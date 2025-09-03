@@ -1,0 +1,85 @@
+version: "3.9"
+
+services:
+  mongo-user:
+    image: mongo:6.0
+    container_name: mongo-user
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-user-data:/data/db
+
+  mongo-project:
+    image: mongo:6.0
+    container_name: mongo-project
+    restart: always
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-project-data:/data/db
+
+  mongo-interview-history:
+    image: mongo:6.0
+    container_name: mongo-interview-history
+    restart: always
+    ports:
+      - "27019:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-interview-history-data:/data/db
+
+  # ===== Elasticsearch (single node, dev-friendly) =====
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.1
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - xpack.license.self_generated.type=basic
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200 >/dev/null || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+
+  # ===== Kibana UI =====
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.14.1
+    container_name: kibana
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+
+volumes:
+  mongo-user-data:
+  mongo-project-data:
+  mongo-interview-history-data:
+  es-data:
