@@ -68,19 +68,16 @@ def getEmbeddings(projects):
 def saveToES(projects, embeddings):
     es.indices.create(
         index=ES_INDEX,
-        body={
-            "mappings": {
-                "properties": {
-                    "name": {"type": "text"},
-                    "interviewGuide": {"type": "text"},
-                    "embedding": {"type": "dense_vector", "dims": len(embeddings[0][0])},
-                    "estimatedInterviewDuration": {"type": "integer"},
-                    "createdAt": {"type": "date"},
-                    "updatedAt": {"type": "date"},
-                }
+        mappings ={
+            "properties": {
+                "name": {"type": "text"},
+                "interviewGuide": {"type": "text"},
+                "embedding": {"type": "dense_vector", "dims": len(embeddings[0][0])},
+                "estimatedInterviewDuration": {"type": "integer"},
+                "createdAt": {"type": "date"},
+                "updatedAt": {"type": "date"},
             }
-        },
-        ignore=400
+        }
     )
 
     for project, embedding in zip(projects, embeddings):
